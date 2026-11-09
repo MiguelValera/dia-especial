@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Día especial</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Pinyon+Script&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: scrapbook album page — cover + CD sliding out as hero, notebook-paper tracklist, physical edition, a "buy" sticker. Single pink look by choice. */
+:root {
+  --pink: #f7d8e0;
+  --pink-deep: #ecaabc;
+  --cherry: #7a0e2c;
+  --cherry-ink: #5b0a21;
+  --cream: #fcf7ef;
+  --ink: #221a1c;
+  --muted: #7d4a58;
+  --rule: #a9c3dc;
+  --margin: #e1788c;
+  --f-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --f-type: "Special Elite", "American Typewriter", "Courier New", monospace;
+  --f-body: "Courier Prime", "Courier New", monospace;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .15  0 0 0 0 .2  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--pink) var(--grain);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; }
+:focus-visible { outline: 3px dashed var(--cherry); outline-offset: 4px; }
+
+/* label-maker strip */
+.tape-label {
+  display: inline-block;
+  background: var(--cherry);
+  color: var(--cream);
+  font-family: var(--f-type);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .82rem;
+  padding: .35em .9em .3em;
+  transform: rotate(-2deg);
+  box-shadow: 0 2px 0 rgba(0,0,0,.12);
+}
+
+/* ---------- top bar ---------- */
+.topbar { padding-block: 18px 0; }
+.topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--f-type); letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; color: var(--cherry); }
+.topbar nav { display: flex; gap: 18px; font-family: var(--f-type); font-size: .85rem; }
+.topbar nav a { text-decoration: none; border-bottom: 1px dashed var(--cherry); color: var(--cherry-ink); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 36px 56px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
+.stage { position: relative; aspect-ratio: 1 / 1; max-width: 100%; }
+.stage .cd {
+  position: absolute; width: 88%; top: 6%; left: 12%;
+  animation: slide 1.4s cubic-bezier(.2,.8,.2,1) .3s both, spin 18s linear 1.7s infinite;
+  filter: drop-shadow(0 10px 18px rgba(90,10,40,.25));
+}
+.stage .cover {
+  position: absolute; width: 84%; top: 4%; left: 0;
+  transform: rotate(-3deg);
+  box-shadow: 0 18px 40px rgba(90,10,40,.28), 0 2px 0 rgba(255,255,255,.6) inset;
+  border: 6px solid var(--cream);
+}
+@keyframes slide { from { transform: translateX(-22%) rotate(0); } to { transform: translateX(0) rotate(0); } }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.stage .tape {
+  position: absolute; width: 26%; height: 7%; top: 1%; left: 30%;
+  background: rgba(255,250,240,.7); transform: rotate(-8deg);
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+.copy { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; min-width: 0; }
+.eyebrow { font-family: var(--f-type); font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.copy h1 { margin: 0; line-height: 0; }
+.copy h1 img { width: min(100%, 470px); transform: rotate(-4deg); filter: drop-shadow(0 4px 6px rgba(90,10,40,.18)); }
+.copy .lede { max-width: 42ch; margin: 0; font-size: 1.02rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: var(--f-type); font-size: .82rem; color: var(--muted); margin: 0; padding: 0; list-style: none; }
+.facts li::before { content: "✦ "; color: var(--cherry); }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--f-type); font-size: 1rem; letter-spacing: .06em;
+  padding: .8em 1.3em; border: 2px solid var(--cherry); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: .5em;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-solid { background: var(--cherry); color: var(--cream); box-shadow: 4px 4px 0 var(--ink); }
+.btn-ghost { background: var(--cream); color: var(--cherry-ink); box-shadow: 4px 4px 0 var(--pink-deep); }
+.btn:hover { transform: translate(-2px, -2px); }
+.btn-solid:hover { box-shadow: 6px 6px 0 var(--ink); }
+
+/* now playing sticker */
+.player {
+  display: flex; align-items: center; gap: 14px; background: var(--cream);
+  padding: 12px 16px 12px 12px; border: 1px solid rgba(122,14,44,.15);
+  box-shadow: 0 8px 20px rgba(90,10,40,.12); transform: rotate(1deg); max-width: 100%;
+}
+.player .play {
+  flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--cherry); color: var(--cream);
+  display: grid; place-items: center; text-decoration: none; font-size: 1.1rem;
+}
+.player .meta { min-width: 0; }
+.player .label { font-family: var(--f-type); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.player .song { font-family: var(--f-body); font-weight: 700; }
+.bars { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; margin-left: 6px; vertical-align: middle; }
+.bars i { width: 3px; background: var(--cherry); animation: eq 1s ease-in-out infinite; }
+.bars i:nth-child(2) { animation-delay: .2s; } .bars i:nth-child(3) { animation-delay: .45s; }
+@keyframes eq { 0%,100% { height: 3px; } 50% { height: 12px; } }
+
+/* ---------- section heads ---------- */
+section { padding-block: 56px; }
+.head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.head h2 { font-family: var(--f-script); font-weight: 400; color: var(--cherry); font-size: clamp(2.8rem, 7vw, 4.4rem); margin: 0; line-height: 1; text-wrap: balance; }
+.head p { margin: 0; font-family: var(--f-type); color: var(--muted); font-size: .9rem; }
+
+/* ---------- tracklist (notebook paper) ---------- */
+.tracks .wrap { display: flex; flex-direction: column; align-items: center; }
+.tracks .head { justify-content: center; text-align: center; flex-direction: column; align-items: center; gap: 6px; }
+.tracklist-box { position: relative; width: min(100%, 660px); }
+.paper {
+  position: relative; background: var(--cream);
+  background-image: linear-gradient(90deg, transparent 58px, var(--margin) 58px, var(--margin) 60px, transparent 60px);
+  padding: 22px 28px 40px 78px;
+  box-shadow: 0 14px 34px rgba(90,10,40,.18);
+  transform: rotate(-.8deg);
+  clip-path: polygon(0 0, 100% 0, 100% 97%, 96% 100%, 92% 97.5%, 87% 100%, 81% 98%, 75% 100%, 69% 97.6%, 62% 100%, 55% 98%, 48% 100%, 41% 97.5%, 34% 100%, 27% 98%, 20% 100%, 13% 97.8%, 7% 100%, 0 98%);
+}
+.paper ol { list-style: none; margin: 0; padding: 0; counter-reset: t; }
+.paper li {
+  counter-increment: t; display: grid; grid-template-columns: 2.4em minmax(0, 1fr); align-items: baseline;
+  padding: 14px 0 8px; column-gap: 6px; border-bottom: 1px solid var(--rule);
+}
+.paper li::before { content: counter(t, decimal-leading-zero); font-family: var(--f-type); color: var(--cherry); font-size: 1.05rem; }
+.paper .t { font-family: var(--f-body); font-weight: 700; font-size: 1.08rem; min-width: 0; }
+.paper .ft { font-family: var(--f-type); font-weight: 400; color: var(--muted); font-size: .86rem; margin-left: .5em; }
+.tracklist-box img.star {
+  position: absolute; width: 190px; right: -120px; top: 40px; transform: rotate(10deg);
+  filter: drop-shadow(0 10px 16px rgba(90,10,40,.25)); pointer-events: none;
+}
+.note {
+  font-family: var(--f-type); font-size: .9rem; background: #fff; padding: 16px 18px; transform: rotate(-1.5deg);
+  box-shadow: 0 8px 18px rgba(90,10,40,.14); max-width: 420px; margin: 36px auto 0; text-align: center;
+}
+@media (max-width: 960px) {
+  .tracklist-box img.star { width: 130px; right: -12px; top: -70px; }
+}
+.note b { color: var(--cherry); }
+
+/* ---------- physical edition ---------- */
+.edition .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.piece { display: flex; flex-direction: column; gap: 12px; margin: 0; }
+.piece img { width: 100%; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 12px 28px rgba(90,10,40,.2); }
+.piece:nth-child(1) img { transform: rotate(-2deg); }
+.piece:nth-child(2) img { transform: rotate(1.5deg); }
+.piece:nth-child(3) img { box-shadow: none; filter: drop-shadow(0 12px 18px rgba(90,10,40,.25)); }
+.piece figcaption { font-family: var(--f-type); font-size: .88rem; color: var(--muted); }
+.piece figcaption b { display: block; color: var(--ink); font-family: var(--f-body); font-size: 1rem; }
+
+/* ---------- buy ---------- */
+.buy .card {
+  position: relative; display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 32px; align-items: center;
+  background: var(--cream); padding: 32px; box-shadow: 0 18px 40px rgba(90,10,40,.18); transform: rotate(.4deg);
+}
+.buy .card > img { width: 100%; border: 5px solid #fff; box-shadow: 0 6px 14px rgba(0,0,0,.15); transform: rotate(-4deg); }
+.buy h3 { margin: 0 0 6px; font-family: var(--f-script); font-weight: 400; color: var(--cherry); font-size: 2.6rem; line-height: 1.05; }
+.price { font-family: var(--f-type); font-size: 1.3rem; margin: 0 0 4px; }
+.price s { color: var(--muted); font-size: .95rem; margin-right: .5em; }
+.small { font-family: var(--f-type); font-size: .82rem; color: var(--muted); margin: 0 0 18px; }
+.soldout {
+  margin-top: 18px; padding: 14px 16px; border: 2px dashed var(--cherry); color: var(--cherry-ink);
+  font-family: var(--f-type); background: #fff;
+}
+.stamp {
+  position: absolute; right: 18px; top: -22px; transform: rotate(10deg);
+  font-family: var(--f-type); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem;
+  border: 3px double var(--cherry); color: var(--cherry); padding: 6px 10px; background: var(--pink);
+}
+
+/* ---------- footer ---------- */
+footer { padding-block: 40px 56px; border-top: 1px dashed rgba(122,14,44,.35); }
+footer .wrap { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+footer p { margin: 0; max-width: 62ch; font-family: var(--f-type); font-size: .82rem; color: var(--muted); }
+.pa {
+  flex: none; background: #000; color: #fff; font-family: Impact, "Arial Narrow", sans-serif; text-align: center;
+  padding: 4px 6px; border: 2px solid #000; outline: 1px solid #fff; outline-offset: -5px; line-height: 1.05; width: 96px;
+}
+.pa span { display: block; font-size: .6rem; letter-spacing: .3em; }
+.pa strong { display: block; background: #fff; color: #000; font-size: 1rem; margin: 2px 0; font-weight: 400; }
+
+@media (max-width: 820px) {
+  .hero .wrap, .tracks .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .stage { width: min(100%, 460px); margin: 0 auto; }
+  .edition .grid { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin: 0 auto; }
+  .buy .card { grid-template-columns: minmax(0, 1fr); padding: 24px; }
+  .buy .card > img { width: 60%; }
+  .paper { padding-left: 70px; padding-right: 14px; }
+  .paper .ft { display: block; margin-left: 0; }
+  .paper li { min-height: 0; padding-block: 8px; }
+  .paper { background-image: linear-gradient(90deg, transparent 52px, var(--margin) 52px, var(--margin) 54px, transparent 54px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <span class="brand">Eso dijo ella Records</span>
+    <nav aria-label="Secciones">
+      <a href="#canciones">Canciones</a>
+      <a href="#edicion">Edición física</a>
+      <a href="#comprar">Comprar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="stage" aria-hidden="true">
+        <img class="cd" src="img/cd.png" alt="">
+        <img class="cover" src="img/portada.jpg" alt="">
+        <span class="tape"></span>
+      </div>
+      <div class="copy">
+        <span class="eyebrow">Nuevo álbum · 2026</span>
+        <h1><img src="img/titulo.png" alt="Día especial"></h1>
+        <span class="tape-label">Marina Rosique</span>
+        <p class="lede">Doce canciones sobre skincare, amor y ser sólo una chica que necesita su día especial.</p>
+        <ul class="facts">
+          <li>12 canciones</li>
+          <li>Side A</li>
+          <li>Edición única</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-solid" href="#comprar">Comprar el CD</a>
+          <a class="btn btn-ghost" href="#canciones">Ver canciones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tracks" id="canciones">
+    <div class="wrap">
+      <div class="head"><h2>tracklist</h2><p>Side A · 12 canciones</p></div>
+      <div class="tracklist-box">
+        <div class="paper">
+          <ol>
+            <li><span class="t">Skincare<span class="ft">ft. La Cris</span></span></li>
+            <li><span class="t">Go Diva<span class="ft">ft. Britney Spears &amp; Michael Scott</span></span></li>
+            <li><span class="t">2 Pretty 2 Be Sad<span class="ft">ft. Olivia Rodrigo</span></span></li>
+            <li><span class="t">Rock &amp; Lip Gloss<span class="ft">ft. Post Malone</span></span></li>
+            <li><span class="t">Slay<span class="ft">ft. Taylor Swift</span></span></li>
+            <li><span class="t">Sugar Daddy<span class="ft">ft. Sabrina Carpenter</span></span></li>
+            <li><span class="t">Nothing Suits Me Like a Suit<span class="ft">ft. Barney Stinson</span></span></li>
+            <li><span class="t">Cartas de amor<span class="ft">ft. Aitana</span></span></li>
+            <li><span class="t">Peses<span class="ft">ft. Pesa</span></span></li>
+            <li><span class="t">Unagi<span class="ft">ft. Rachel Green</span></span></li>
+            <li><span class="t">Cosmopolitan<span class="ft">ft. Beyoncé</span></span></li>
+            <li><span class="t">No te despidas<span class="ft">ft. Miguel Valera</span></span></li>
+          </ol>
+        </div>
+        <img class="star" src="img/estrella.png" alt="Pegatina de estrella con la cara de Marina">
+      </div>
+      <p class="note"><b>Aviso:</b> contiene letras explícitas, demasiado glitter y una colaboración final que no se puede saltar.</p>
+    </div>
+  </section>
+
+  <section class="edition" id="edicion">
+    <div class="wrap">
+      <div class="head"><h2>edición física</h2><p>Hecha a mano, una sola copia</p></div>
+      <div class="grid">
+        <figure class="piece">
+          <img src="img/portada.jpg" alt="Portada de Día especial: Marina con el móvil sobre fondo rosa">
+          <figcaption><b>Portada</b>120 × 120 mm, papel con textura</figcaption>
+        </figure>
+        <figure class="piece">
+          <img src="img/contraportada.jpg" alt="Contraportada con el tracklist en hoja de libreta, estrella y código QR">
+          <figcaption><b>Contraportada</b></figcaption>
+        </figure>
+        <figure class="piece">
+          <img src="img/cd.png" alt="Pegatina circular del CD en rosa con el título Día especial">
+          <figcaption><b>CD</b>Pegatina de 118 mm, Side A</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="buy" id="comprar">
+    <div class="wrap">
+      <div class="card">
+        <span class="stamp">Edición limitada</span>
+        <img src="img/portada.jpg" alt="">
+        <div>
+          <h3>Día especial, en CD</h3>
+          <p class="price"><s>19,99 €</s>Un abrazo muy fuerte</p>
+          <p class="small">Envío gratis en mano. Incluye libreto, pegatina y acceso a la playlist.</p>
+          <button class="btn btn-solid" id="buy-btn" type="button">Añadir a la cesta</button>
+          <div class="soldout" id="soldout" role="status" hidden>
+            Agotado. Solo existe una copia y ya tiene dueña: Marina Rosique ♥
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Todos los derechos reservados a Eso dijo ella Records. Al comprar este CD apoyas a todas las chicas que hoy no van a tener su día especial.</p>
+    <div class="pa" aria-label="Parental Advisory: Explicit Content"><span>PARENTAL</span><strong>ADVISORY</strong><span>EXPLICIT CONTENT</span></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("buy-btn").addEventListener("click", function () {
+    var s = document.getElementById("soldout");
+    s.hidden = false;
+    this.textContent = "Agotado";
+    this.disabled = true;
+  });
+</script>
+</body>
+</html>
